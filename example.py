@@ -1,12 +1,12 @@
 import sys
-from PyQt4 import QtGui
+from PyQt5 import QtWidgets, QtGui
 from pyqtpaint import PyQtPaint
 
 
-class SampleCode(QtGui.QDialog):
+class SampleCode(QtWidgets.QDialog):
     def __init__(self, *args, **kwargs):
         super(SampleCode, self).__init__(*args, **kwargs)
-        layout = QtGui.QVBoxLayout()
+        layout = QtWidgets.QVBoxLayout()
 
         # create PyQtPaint widget
         paint = PyQtPaint(1920, 1080)
@@ -20,7 +20,7 @@ class SampleCode(QtGui.QDialog):
         self.setLayout(layout)
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     test_window = SampleCode()
     test_window.show()
     sys.exit(app.exec_())

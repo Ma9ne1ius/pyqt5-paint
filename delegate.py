@@ -1,7 +1,7 @@
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 
 
-class TreeDelegate(QtGui.QStyledItemDelegate):
+class TreeDelegate(QtWidgets.QStyledItemDelegate):
     def createEditor(self, parent, option, index):
         col_num = index.column()
         if col_num == 0:
@@ -18,26 +18,26 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
         line_color = QtGui.QColor(0, 0, 0, 10)
 
         if col_num == 0:
-            if option.state & QtGui.QStyle.State_Enabled:
-                if index.data(QtCore.Qt.UserRole).toPyObject():
+            if option.state & QtWidgets.QStyle.State_Enabled:
+                if index.data(QtCore.Qt.UserRole):
                     painter.save()
                     # Set painter bassed on selection state.
-                    if option.state & QtGui.QStyle.State_Selected:
+                    if option.state & QtWidgets.QStyle.State_Selected:
                         painter.setPen(QtCore.Qt.white)
                         style = option.widget.style() if option.widget else QtGui.QApplication.style()
-                        style.drawPrimitive(QtGui.QStyle.PE_PanelItemViewItem,
+                        style.drawPrimitive(QtWidgets.QStyle.PE_PanelItemViewItem,
                                             option, painter, None)
-                        opt = QtGui.QStyleOptionViewItemV4()
+                        opt = QtWidgets.QStyleOptionViewItemV4()
                         self.initStyleOption(opt, index)
-                        style.drawControl(QtGui.QStyle.CE_ItemViewItem,
+                        style.drawControl(QtWidgets.QStyle.CE_ItemViewItem,
                                           option, painter, option.widget)
                         painter.setPen(QtCore.Qt.black)
 
                     img = QtGui.QPixmap('img/eye.png')
                     icon_rect = QtCore.QRect(option.rect)
-                    painter.drawPixmap(icon_rect.center().x() - icon_dim / 2,
-                                       icon_rect.center().y() - icon_dim / 2,
-                                       icon_dim, icon_dim, img)
+                    painter.drawPixmap(int(icon_rect.center().x() - icon_dim / 2),
+                                       int(icon_rect.center().y() - icon_dim / 2),
+                                       int(icon_dim), int(icon_dim), img)
                     painter.setPen(QtGui.QPen(line_color, 0,
                                               QtCore.Qt.SolidLine,
                                               QtCore.Qt.SquareCap))
@@ -53,14 +53,14 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                     return
 
                 else:
-                    if option.state & QtGui.QStyle.State_Selected:
+                    if option.state & QtWidgets.QStyle.State_Selected:
                         painter.setPen(QtCore.Qt.white)
                         style = option.widget.style() if option.widget else QtGui.QApplication.style()
-                        style.drawPrimitive(QtGui.QStyle.PE_PanelItemViewItem,
+                        style.drawPrimitive(QtWidgets.QStyle.PE_PanelItemViewItem,
                                             option, painter, None)
-                        opt = QtGui.QStyleOptionViewItemV4()
+                        opt = QtWidgets.QStyleOptionViewItemV4()
                         self.initStyleOption(opt, index)
-                        style.drawControl(QtGui.QStyle.CE_ItemViewItem,
+                        style.drawControl(QtWidgets.QStyle.CE_ItemViewItem,
                                           option, painter, option.widget)
                         painter.setPen(QtCore.Qt.black)
 
@@ -85,7 +85,7 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                 br = option.rect.adjusted(icon_dim * 3, 0, 0, 0)
                 flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
                 fm = painter.fontMetrics()
-                text = index.data(QtCore.Qt.DisplayRole).toPyObject()
+                text = index.data(QtCore.Qt.DisplayRole)
                 # this takes care of adding the ellipses as necessary
                 text = fm.elidedText(text, QtCore.Qt.ElideRight, br.width())
                 br = painter.boundingRect(br, int(flags), text)
@@ -107,24 +107,24 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                 return
 
         elif col_num == 1:
-            # layerType = index.data(QtCore.Qt.UserRole).toPyObject()
-            layer_data = index.data(QtCore.Qt.UserRole).toPyObject()[0]
+            # layerType = index.data(QtCore.Qt.UserRole)
+            layer_data = index.data(QtCore.Qt.UserRole)[0]
             #   group
             if layer_data and layer_data['layerType'] == 1:
 
                 painter.save()
-                if option.state & QtGui.QStyle.State_Selected:
+                if option.state & QtWidgets.QStyle.State_Selected:
                     painter.setPen(QtCore.Qt.white)
                     style = option.widget.style() if option.widget else QtGui.QApplication.style()
-                    style.drawPrimitive(QtGui.QStyle.PE_PanelItemViewItem,
+                    style.drawPrimitive(QtWidgets.QStyle.PE_PanelItemViewItem,
                                         option, painter, None)
-                    opt = QtGui.QStyleOptionViewItemV4()
+                    opt = QtWidgets.QStyleOptionViewItemV4()
                     self.initStyleOption(opt, index)
-                    style.drawControl(QtGui.QStyle.CE_ItemViewItem, option,
+                    style.drawControl(QtWidgets.QStyle.CE_ItemViewItem, option,
                                       painter, option.widget)
                     painter.setPen(QtCore.Qt.black)
 
-                if option.state & QtGui.QStyle.State_Open:
+                if option.state & QtWidgets.QStyle.State_Open:
                     img = QtGui.QPixmap('img/arrow-down.png')
                 elif option.state:
                     img = QtGui.QPixmap('img/arrow-right.png')
@@ -148,7 +148,7 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                 br = option.rect.adjusted(icon_dim * 3.5, 0, 0, 0)
                 flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
                 fm = painter.fontMetrics()
-                text = index.data(QtCore.Qt.DisplayRole).toPyObject()
+                text = index.data(QtCore.Qt.DisplayRole)
                 text = fm.elidedText(text, QtCore.Qt.ElideRight, br.width())
                 br = painter.boundingRect(br, int(flags), text)
                 painter.drawText(br, 0, text)
@@ -168,14 +168,14 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
             # stroke
             elif layer_data and layer_data['layerType'] == 0:
                 painter.save()
-                if option.state & QtGui.QStyle.State_Selected:
+                if option.state & QtWidgets.QStyle.State_Selected:
                     painter.setPen(QtCore.Qt.white)
                     style = option.widget.style() if option.widget else QtGui.QApplication.style()
-                    style.drawPrimitive(QtGui.QStyle.PE_PanelItemViewItem,
+                    style.drawPrimitive(QtWidgets.QStyle.PE_PanelItemViewItem,
                                         option, painter, None)
-                    opt = QtGui.QStyleOptionViewItemV4()
+                    opt = QtWidgets.QStyleOptionViewItemV4()
                     self.initStyleOption(opt, index)
-                    style.drawControl(QtGui.QStyle.CE_ItemViewItem, option,
+                    style.drawControl(QtWidgets.QStyle.CE_ItemViewItem, option,
                                       painter, option.widget)
                     painter.setPen(QtCore.Qt.black)
 
@@ -184,7 +184,7 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                 br = option.rect.adjusted(icon_dim * 2, 0, 0, 0)
                 flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
                 fm = painter.fontMetrics()
-                text = index.data(QtCore.Qt.DisplayRole).toPyObject()
+                text = index.data(QtCore.Qt.DisplayRole)
                 # this takes care of adding the ellipses as necessary
                 text = fm.elidedText(text, QtCore.Qt.ElideRight, br.width())
                 br = painter.boundingRect(br, int(flags), text)
@@ -203,16 +203,16 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
 
                 return
             elif layer_data and layer_data['layerType'] == 2:
-                if option.state & QtGui.QStyle.State_Enabled:
+                if option.state & QtWidgets.QStyle.State_Enabled:
                     painter.save()
-                    if option.state & QtGui.QStyle.State_Selected:
+                    if option.state & QtWidgets.QStyle.State_Selected:
                         painter.setPen(QtCore.Qt.white)
                         style = option.widget.style() if option.widget else QtGui.QApplication.style()
-                        style.drawPrimitive(QtGui.QStyle.PE_PanelItemViewItem,
+                        style.drawPrimitive(QtWidgets.QStyle.PE_PanelItemViewItem,
                                             option, painter, None)
-                        opt = QtGui.QStyleOptionViewItemV4()
+                        opt = QtWidgets.QStyleOptionViewItemV4()
                         self.initStyleOption(opt, index)
-                        style.drawControl(QtGui.QStyle.CE_ItemViewItem,
+                        style.drawControl(QtWidgets.QStyle.CE_ItemViewItem,
                                           option, painter, option.widget)
                         painter.setPen(QtCore.Qt.black)
                     icon_rect = QtCore.QRect(option.rect)
@@ -220,7 +220,7 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                     br = option.rect.adjusted(icon_dim * 3, 0, 0, 0)
                     flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
                     fm = painter.fontMetrics()
-                    text = index.data(QtCore.Qt.DisplayRole).toPyObject()
+                    text = index.data(QtCore.Qt.DisplayRole)
                     # this takes care of adding the ellipses as necessary
                     text = fm.elidedText(text, QtCore.Qt.ElideRight,
                                          br.width())
@@ -248,7 +248,7 @@ class TreeDelegate(QtGui.QStyledItemDelegate):
                     br = option.rect.adjusted(icon_dim * 3, 0, 0, 0)
                     flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
                     fm = painter.fontMetrics()
-                    text = index.data(QtCore.Qt.DisplayRole).toPyObject()
+                    text = index.data(QtCore.Qt.DisplayRole)
                     # this takes care of adding the ellipses as necessary
                     text = fm.elidedText(text, QtCore.Qt.ElideRight,
                                          br.width())

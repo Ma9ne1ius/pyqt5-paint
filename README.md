@@ -1,7 +1,7 @@
 # pyqt-paint
 pyqt painting widget
 
-PyQtPaint is a PyQt4 widget that features a canvas and layering
+PyQtPaint is a PyQt5 widget that features a canvas and layering
 system that can ultimately be used to create artist-oriented interfaces
 for tools and applications. PyQtPaint gives artists a familiar interface
 that allows them to input custom painted images without having to open

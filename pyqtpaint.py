@@ -1,12 +1,12 @@
 import sys
-from PyQt4 import QtGui, QtCore, uic
+from PyQt5 import QtGui, QtCore, uic, QtWidgets
 from canvas import PaintScene, PaintView
 from canvas import DeleteStroke, GroupStrokes, DeleteGroup
 from layers import LayerPanel, Layer, Folder
 from delegate import TreeDelegate
 
 
-class PyQtPaint(QtGui.QWidget):
+class PyQtPaint(QtWidgets.QWidget):
     """
     Canvas based painting ui w/ brush control, layers, undo functionality
 
@@ -40,45 +40,45 @@ class PyQtPaint(QtGui.QWidget):
         self.layers_tree.setItemDelegate(TreeDelegate())
         self.layers_widget.layout().addWidget(self.layers_tree)
 
-        self.file_dialog = QtGui.QFileDialog(self)
-        self.color_dialog = QtGui.QColorDialog()
+        self.file_dialog = QtWidgets.QFileDialog(self)
+        self.color_dialog = QtWidgets.QColorDialog()
 
         self._update_brush_ui()
 
     def _create_actions(self):
-        self.undo_action = QtGui.QAction('Undo', self)
+        self.undo_action = QtWidgets.QAction('Undo', self)
         self.undo_action.setShortcut('Ctrl+Z')
         self.addAction(self.undo_action)
 
-        self.redo_action = QtGui.QAction('Redo', self)
+        self.redo_action = QtWidgets.QAction('Redo', self)
         self.redo_action.setShortcut('Shift+Ctrl+Z')
         self.addAction(self.redo_action)
 
-        self.delete_action = QtGui.QAction('Delete', self)
+        self.delete_action = QtWidgets.QAction('Delete', self)
         self.delete_action.setShortcut('Backspace')
         self.addAction(self.delete_action)
 
-        self.group_action = QtGui.QAction('Group', self)
+        self.group_action = QtWidgets.QAction('Group', self)
         self.group_action.setShortcut('Ctrl+G')
         self.addAction(self.group_action)
 
-        self.save_action = QtGui.QAction('Save', self)
+        self.save_action = QtWidgets.QAction('Save', self)
         self.save_action.setShortcut('Ctrl+S')
         self.addAction(self.save_action)
 
-        self.increase_size_action = QtGui.QAction('Increase Size', self)
+        self.increase_size_action = QtWidgets.QAction('Increase Size', self)
         self.increase_size_action.setShortcut(']')
         self.addAction(self.increase_size_action)
 
-        self.decrease_size_action = QtGui.QAction('Decrease Size', self)
+        self.decrease_size_action = QtWidgets.QAction('Decrease Size', self)
         self.decrease_size_action.setShortcut('[')
         self.addAction(self.decrease_size_action)
 
-        self.brush_softer_action = QtGui.QAction('Brush Softer', self)
+        self.brush_softer_action = QtWidgets.QAction('Brush Softer', self)
         self.brush_softer_action.setShortcut('{')
         self.addAction(self.brush_softer_action)
 
-        self.brush_harder_action = QtGui.QAction('Brush Harder', self)
+        self.brush_harder_action = QtWidgets.QAction('Brush Harder', self)
         self.brush_harder_action.setShortcut('}')
         self.addAction(self.brush_harder_action)
 
@@ -112,7 +112,7 @@ class PyQtPaint(QtGui.QWidget):
         self.size_SLD.setValue(self.paint_scene.pen_size)
         self.blur_SLD.setValue(self.paint_scene.pen_blur)
 
-        style = QtCore.QString("QPushButton { border-style: none; \
+        style = ("QPushButton { border-style: none; \
                                               border-radius: 10px; \
                                               min-width: 3em; \
                                               height: 3em; \
@@ -134,7 +134,7 @@ class PyQtPaint(QtGui.QWidget):
 
         highest_group = None
         if self.layers_tree.selectedItems():
-            iterator = QtGui.QTreeWidgetItemIterator(self.layers_tree)
+            iterator = QtWidgets.QTreeWidgetItemIterator(self.layers_tree)
             while iterator.value():
                 item = iterator.value()
                 if isinstance(item, Folder) and item in self.layers_tree.selectedItems():
@@ -155,12 +155,12 @@ class PyQtPaint(QtGui.QWidget):
             stroke_id (int): unique index of stroke to be removed
 
         """
-        iterator = QtGui.QTreeWidgetItemIterator(self.layers_tree)
+        iterator = QtWidgets.QTreeWidgetItemIterator(self.layers_tree)
 
         while iterator.value():
             item = iterator.value()
             if isinstance(item, Layer):
-                layer_data = item.data(1, QtCore.Qt.UserRole).toPyObject()[0]
+                layer_data = item.data(1, QtCore.Qt.UserRole)[0]
                 if layer_data['stroke_index'] == stroke_id:
                     parent = item.parent()
                     if parent:
@@ -170,7 +170,7 @@ class PyQtPaint(QtGui.QWidget):
                         idx = self.layers_tree.indexOfTopLevelItem(item)
                         self.layers_tree.takeTopLevelItem(idx)
             if isinstance(item, Folder):
-                layer_data = item.data(1, QtCore.Qt.UserRole).toPyObject()[0]
+                layer_data = item.data(1, QtCore.Qt.UserRole)[0]
 
                 if item.group_index == stroke_id:
                     parent = item.parent()
@@ -248,7 +248,7 @@ class PyQtPaint(QtGui.QWidget):
         iterates through layer panel & updates stacking order of strokes
 
         """
-        iterator = QtGui.QTreeWidgetItemIterator(self.layers_tree)
+        iterator = QtWidgets.QTreeWidgetItemIterator(self.layers_tree)
         while iterator.value():
             item = iterator.value()
             target_index = self.layers_tree.indexFromItem(item).row()
@@ -259,7 +259,7 @@ class PyQtPaint(QtGui.QWidget):
                 pass
 
             if isinstance(item, Layer):
-                layer_data = item.data(1, QtCore.Qt.UserRole).toPyObject()[0]
+                layer_data = item.data(1, QtCore.Qt.UserRole)[0]
                 parent = item.parent()
                 if not parent:
                     layer_data['layerType'] = 0
@@ -316,11 +316,11 @@ class PyQtPaint(QtGui.QWidget):
         updates pen color from color picker
         """
         color = self.color_dialog.getColor(self.paint_scene.pen_color,
-                                           self, QtCore.QString('Color'),
-                                           QtGui.QColorDialog.ShowAlphaChannel)
+                                           self, ('Color'),
+                                           QtWidgets.QColorDialog.ShowAlphaChannel)
         self.paint_scene.set_pen_color(color)
 
-        style = QtCore.QString("QPushButton { border-style: none; \
+        style = ("QPushButton { border-style: none; \
                                               border-radius: 10px; \
                                               min-width: 3em; \
                                               height: 3em; \
@@ -334,10 +334,11 @@ class PyQtPaint(QtGui.QWidget):
         """
         filepath = self.file_dialog.getSaveFileName(self, "Save Canvas",
                                                     "Render",
-                                                    "Images (*.png *.jpg)")
+                                                    "Images (*.png *.jpg)")[0]
         if filepath:
             img = self.get_img()
             img.save(filepath)
+            QtWidgets.QMessageBox.information(self, "", "Image saved successfully")
 
     def get_img(self):
         """
@@ -346,7 +347,7 @@ class PyQtPaint(QtGui.QWidget):
         Returns:
             img: returns QImage data from canvas
         """
-        img = QtGui.QImage(self.paint_scene.width, self.paint_scene.height,
+        img = QtGui.QImage(int(self.paint_scene.width), int(self.paint_scene.height),
                            QtGui.QImage.Format_RGB32)
         paint = QtGui.QPainter(img)
         paint.setRenderHint(QtGui.QPainter.Antialiasing)

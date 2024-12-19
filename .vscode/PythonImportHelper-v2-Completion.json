@@ -1,0 +1,335 @@
+[
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "uic",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "Layer",
+        "importPath": "layers",
+        "description": "layers",
+        "isExtraImport": true,
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "Folder",
+        "importPath": "layers",
+        "description": "layers",
+        "isExtraImport": true,
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "LayerPanel",
+        "importPath": "layers",
+        "description": "layers",
+        "isExtraImport": true,
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "Layer",
+        "importPath": "layers",
+        "description": "layers",
+        "isExtraImport": true,
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "Folder",
+        "importPath": "layers",
+        "description": "layers",
+        "isExtraImport": true,
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "PyQtPaint",
+        "importPath": "pyqtpaint",
+        "description": "pyqtpaint",
+        "isExtraImport": true,
+        "detail": "pyqtpaint",
+        "documentation": {}
+    },
+    {
+        "label": "PaintScene",
+        "importPath": "canvas",
+        "description": "canvas",
+        "isExtraImport": true,
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "PaintView",
+        "importPath": "canvas",
+        "description": "canvas",
+        "isExtraImport": true,
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteStroke",
+        "importPath": "canvas",
+        "description": "canvas",
+        "isExtraImport": true,
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "GroupStrokes",
+        "importPath": "canvas",
+        "description": "canvas",
+        "isExtraImport": true,
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteGroup",
+        "importPath": "canvas",
+        "description": "canvas",
+        "isExtraImport": true,
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "TreeDelegate",
+        "importPath": "delegate",
+        "description": "delegate",
+        "isExtraImport": true,
+        "detail": "delegate",
+        "documentation": {}
+    },
+    {
+        "label": "PaintScene",
+        "kind": 6,
+        "importPath": "canvas",
+        "description": "canvas",
+        "peekOfCode": "class PaintScene(QtWidgets.QGraphicsScene):\n    \"\"\"\n    This module deals with all stroke information for PyQtPaint.\n    Creates and stores strokes, toggles visibility, communicates with PaintView\n    and LayerPanel. Makes calls to QUndoFramework.\n    Attributes:\n        brushChanged (SIGNAL): emitted when brush settings change\n        height (int): Height of scene\n        next_stroke (int): Stores index of next stroke\n        pen_blur (int): Controls brush hardness",
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "PaintView",
+        "kind": 6,
+        "importPath": "canvas",
+        "description": "canvas",
+        "peekOfCode": "class PaintView(QtWidgets.QGraphicsView):\n    \"\"\"\n    Display/input for Paint Scene\n    \"\"\"\n    def __init__(self, *args, **kwargs):\n        super(PaintView, self).__init__(*args, **kwargs)\n        self.setMouseTracking(True)\n        self.setFrameStyle(QtWidgets.QFrame.NoFrame)\n        self.setBackgroundBrush(\n            QtGui.QBrush(QtGui.QColor(128, 128, 128, 128),",
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "AddStroke",
+        "kind": 6,
+        "importPath": "canvas",
+        "description": "canvas",
+        "peekOfCode": "class AddStroke(QtWidgets.QUndoCommand):\n    \"\"\"\n    Adds stroke to paint_scene\n    \"\"\"\n    def __init__(self, parent, stroke):\n        \"\"\"\n        Args:\n            parent (QGraphicsScene): paint_scene stroke belongs to\n            stroke (QPath): Stroke information\n        \"\"\"",
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteStroke",
+        "kind": 6,
+        "importPath": "canvas",
+        "description": "canvas",
+        "peekOfCode": "class DeleteStroke(QtWidgets.QUndoCommand):\n    \"\"\"\n    Removes stroke from paint scene\n    \"\"\"\n    def __init__(self, parent, stroke, group=None):\n        \"\"\"\n        Args:\n            parent (QGraphicsScene): paint_scene stroke belongs to\n            stroke (QPath): Stroke information\n            group (None, optional): if layer is grouped, pass Folder info",
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteGroup",
+        "kind": 6,
+        "importPath": "canvas",
+        "description": "canvas",
+        "peekOfCode": "class DeleteGroup(QtWidgets.QUndoCommand):\n    \"\"\"\n    delete group of strokes\n    \"\"\"\n    def __init__(self, parent, group):\n        \"\"\"\n        Args:\n            parent (QGraphicsScene): paint scene\n            group (QTreeWidgetItem): folder of group\n        \"\"\"",
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "GroupStrokes",
+        "kind": 6,
+        "importPath": "canvas",
+        "description": "canvas",
+        "peekOfCode": "class GroupStrokes(QtWidgets.QUndoCommand):\n    \"\"\"\n    group selected strokes, create folder in layers\n    \"\"\"\n    def __init__(self, parent, strokes):\n        \"\"\"Summary\n        Args:\n            parent (QGraphicsScene): paint scene\n            strokes (list): list of selected Layers\n        \"\"\"",
+        "detail": "canvas",
+        "documentation": {}
+    },
+    {
+        "label": "TreeDelegate",
+        "kind": 6,
+        "importPath": "delegate",
+        "description": "delegate",
+        "peekOfCode": "class TreeDelegate(QtWidgets.QStyledItemDelegate):\n    def createEditor(self, parent, option, index):\n        col_num = index.column()\n        if col_num == 0:\n            return\n        return super(TreeDelegate, self).createEditor(parent, option, index)\n    def setModelData(self, editor, model, index):\n        return super(TreeDelegate, self).setModelData(editor, model, index)\n    def paint(self, painter, option, index):\n        icon_dim = 14",
+        "detail": "delegate",
+        "documentation": {}
+    },
+    {
+        "label": "SampleCode",
+        "kind": 6,
+        "importPath": "example",
+        "description": "example",
+        "peekOfCode": "class SampleCode(QtWidgets.QDialog):\n    def __init__(self, *args, **kwargs):\n        super(SampleCode, self).__init__(*args, **kwargs)\n        layout = QtWidgets.QVBoxLayout()\n        # create PyQtPaint widget\n        paint = PyQtPaint(1920, 1080)\n        # set pen attributes\n        paint.set_pen_color(QtGui.QColor(80, 230, 140, 255))\n        paint.set_pen_size(40)\n        paint.set_pen_blur(2)",
+        "detail": "example",
+        "documentation": {}
+    },
+    {
+        "label": "LayerPanel",
+        "kind": 6,
+        "importPath": "layers",
+        "description": "layers",
+        "peekOfCode": "class LayerPanel(QtWidgets.QTreeWidget):\n    \"\"\"\n    QTreeWidget acting as a layers panel similar to photoshop/illustrator\n    Attributes:\n        layerOrderChanged (SIGNAL): Emitted when layers change\n    \"\"\"\n    layerOrderChanged = QtCore.pyqtSignal()\n    def __init__(self, *args, **kwargs):\n        self._drag_toggle_col = kwargs.pop('dragToggleColumns', [])\n        self._columns = kwargs.pop('columns', None)",
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "Layer",
+        "kind": 6,
+        "importPath": "layers",
+        "description": "layers",
+        "peekOfCode": "class Layer(QtWidgets.QTreeWidgetItem):\n    \"\"\"\n    Layer item visible in Layers pannel, stores information about\n    individual strokes\n    Attributes:\n        visible (bool): layer visibility\n    \"\"\"\n    def __init__(self, parent, *args, **kwargs):\n        self._stroke_index = kwargs.pop('stroke_index', '')\n        vis = kwargs.pop('visibility', True)",
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "Folder",
+        "kind": 6,
+        "importPath": "layers",
+        "description": "layers",
+        "peekOfCode": "class Folder(QtWidgets.QTreeWidgetItem):\n    \"\"\"\n    Folder item visible in Layers pannel, stores information about\n    groups of strokes\n    Attributes:\n        visible (bool): group visibility\n    \"\"\"\n    def __init__(self, parent, *args, **kwargs):\n        vis = kwargs.pop('visibility', True)\n        self._group_index = kwargs.pop('group_index', '')",
+        "detail": "layers",
+        "documentation": {}
+    },
+    {
+        "label": "PyQtPaint",
+        "kind": 6,
+        "importPath": "pyqtpaint",
+        "description": "pyqtpaint",
+        "peekOfCode": "class PyQtPaint(QtWidgets.QWidget):\n    \"\"\"\n    Canvas based painting ui w/ brush control, layers, undo functionality\n    Attributes:\n        color_dialog (QColorDialog): Color Picker\n        file_dialog (QFileDialog): Filepath picker for saving img externally\n        layers_tree (QTreeWidgetItem): Tree widget acting as a layers panel\n        paint_scene (QGraphicsScene): graphics scene storing/maintaing stroke\n                                      information\n    Args:",
+        "detail": "pyqtpaint",
+        "documentation": {}
+    }
+]

@@ -1,8 +1,8 @@
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from layers import Layer, Folder
 
 
-class PaintScene(QtGui.QGraphicsScene):
+class PaintScene(QtWidgets.QGraphicsScene):
     """
     This module deals with all stroke information for PyQtPaint.
     Creates and stores strokes, toggles visibility, communicates with PaintView
@@ -42,9 +42,9 @@ class PaintScene(QtGui.QGraphicsScene):
         self._is_painting = False
 
         # undo framework
-        self.undo_stack = QtGui.QUndoStack(self)
-        self.undo_view = QtGui.QUndoView(self.undo_stack)
-        self.undo_view.setEmptyLabel(QtCore.QString('New'))
+        self.undo_stack = QtWidgets.QUndoStack(self)
+        self.undo_view = QtWidgets.QUndoView(self.undo_stack)
+        self.undo_view.setEmptyLabel(('New'))
 
         # brush properites
         self.pen_size = 30
@@ -73,7 +73,7 @@ class PaintScene(QtGui.QGraphicsScene):
         self._cursor_fill = self.addEllipse(-15, -15, 30, 30, pen, brush)
         self._cursor_fill.setOpacity(.5)
 
-        effect = QtGui.QGraphicsBlurEffect()
+        effect = QtWidgets.QGraphicsBlurEffect()
         effect.setBlurRadius(self.pen_blur)
         self._cursor_fill.setGraphicsEffect(effect)
         self._cursor_fill.setZValue(1000)
@@ -138,7 +138,7 @@ class PaintScene(QtGui.QGraphicsScene):
             else:
                 self.complete_paintstroke()
 
-        self._current_path = QtGui.QGraphicsPathItem(QtGui.QPainterPath())
+        self._current_path = QtWidgets.QGraphicsPathItem(QtGui.QPainterPath())
         pen = QtGui.QPen(self.pen_color, self.pen_size, QtCore.Qt.SolidLine,
                          QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
         self._current_path.setPen(pen)
@@ -146,7 +146,7 @@ class PaintScene(QtGui.QGraphicsScene):
         self._current_path.setPath(path)
 
         # brush hardness
-        effect = QtGui.QGraphicsBlurEffect()
+        effect = QtWidgets.QGraphicsBlurEffect()
         effect.setBlurRadius(self.pen_blur)
         self._current_path.setGraphicsEffect(effect)
 
@@ -158,7 +158,7 @@ class PaintScene(QtGui.QGraphicsScene):
                          QtCore.Qt.RoundJoin)
         self._path_preview = self.addPath(QtGui.QPainterPath(), pen)
         self._path_preview.setPath(path)
-        preview_effect = QtGui.QGraphicsBlurEffect()
+        preview_effect = QtWidgets.QGraphicsBlurEffect()
         preview_effect.setBlurRadius(self.pen_blur)
         self._path_preview.setGraphicsEffect(preview_effect)
         self._path_preview.setZValue(self.next_stroke + 1)
@@ -296,14 +296,14 @@ class PaintScene(QtGui.QGraphicsScene):
         self._cursor_fill.setBrush(QtGui.QBrush(color, QtCore.Qt.SolidPattern))
 
 
-class PaintView(QtGui.QGraphicsView):
+class PaintView(QtWidgets.QGraphicsView):
     """
     Display/input for Paint Scene
     """
     def __init__(self, *args, **kwargs):
         super(PaintView, self).__init__(*args, **kwargs)
         self.setMouseTracking(True)
-        self.setFrameStyle(QtGui.QFrame.NoFrame)
+        self.setFrameStyle(QtWidgets.QFrame.NoFrame)
         self.setBackgroundBrush(
             QtGui.QBrush(QtGui.QColor(128, 128, 128, 128),
                          QtCore.Qt.SolidPattern))
@@ -369,7 +369,7 @@ class PaintView(QtGui.QGraphicsView):
                        QtCore.Qt.KeepAspectRatio)
 
 
-class AddStroke(QtGui.QUndoCommand):
+class AddStroke(QtWidgets.QUndoCommand):
     """
     Adds stroke to paint_scene
     """
@@ -412,7 +412,7 @@ class AddStroke(QtGui.QUndoCommand):
         self._parent.strokeRemoved.emit(self._stroke_id)
 
 
-class DeleteStroke(QtGui.QUndoCommand):
+class DeleteStroke(QtWidgets.QUndoCommand):
     """
     Removes stroke from paint scene
     """
@@ -455,7 +455,7 @@ class DeleteStroke(QtGui.QUndoCommand):
             self._group.insertChild(self._index, self._stroke)
 
             layer_data = self._stroke.data(1,
-                                           QtCore.Qt.UserRole).toPyObject()[0]
+                                           QtCore.Qt.UserRole)[0]
             layer_data['layerType'] = 2
             varient = QtCore.QVariant((layer_data,))
             self._stroke.setData(1, QtCore.Qt.UserRole, varient)
@@ -465,7 +465,7 @@ class DeleteStroke(QtGui.QUndoCommand):
                                                        self._stroke)
 
 
-class DeleteGroup(QtGui.QUndoCommand):
+class DeleteGroup(QtWidgets.QUndoCommand):
     """
     delete group of strokes
     """
@@ -506,7 +506,7 @@ class DeleteGroup(QtGui.QUndoCommand):
             self._group.setExpanded(True)
 
 
-class GroupStrokes(QtGui.QUndoCommand):
+class GroupStrokes(QtWidgets.QUndoCommand):
     """
     group selected strokes, create folder in layers
     """
@@ -535,7 +535,7 @@ class GroupStrokes(QtGui.QUndoCommand):
         """
         groups strokes
         """
-        iterator = QtGui.QTreeWidgetItemIterator(self._parent.layers_tree)
+        iterator = QtWidgets.QTreeWidgetItemIterator(self._parent.layers_tree)
         while iterator.value():
             layer = iterator.value()
 
@@ -562,7 +562,7 @@ class GroupStrokes(QtGui.QUndoCommand):
 
                 self._group_item.addChild(item)
 
-                layer_data = layer.data(1, QtCore.Qt.UserRole).toPyObject()[0]
+                layer_data = layer.data(1, QtCore.Qt.UserRole)[0]
                 layer_data['layerType'] = 2
                 varient = QtCore.QVariant((layer_data,))
                 layer.setData(1, QtCore.Qt.UserRole, varient)
@@ -579,7 +579,7 @@ class GroupStrokes(QtGui.QUndoCommand):
         ungroups strokes
         """
         move_these = []
-        iterator = QtGui.QTreeWidgetItemIterator(self._group_item)
+        iterator = QtWidgets.QTreeWidgetItemIterator(self._group_item)
         while iterator.value():
             layer = iterator.value()
 
@@ -597,7 +597,7 @@ class GroupStrokes(QtGui.QUndoCommand):
             parent_index = self._parent.layers_tree.indexOfTopLevelItem(self._group_item)
             self._parent.layers_tree.insertTopLevelItem(parent_index, item)
 
-            layer_data = item.data(1, QtCore.Qt.UserRole).toPyObject()[0]
+            layer_data = item.data(1, QtCore.Qt.UserRole)[0]
             layer_data['layerType'] = 0
             varient = QtCore.QVariant((layer_data,))
             item.setData(1, QtCore.Qt.UserRole, varient)

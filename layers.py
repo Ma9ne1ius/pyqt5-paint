@@ -1,7 +1,7 @@
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 
 
-class LayerPanel(QtGui.QTreeWidget):
+class LayerPanel(QtWidgets.QTreeWidget):
     """
     QTreeWidget acting as a layers panel similar to photoshop/illustrator
 
@@ -25,10 +25,10 @@ class LayerPanel(QtGui.QTreeWidget):
 
         sets selection mode/drag & drop mode/columns
         """
-        self.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
+        self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.setDragEnabled(True)
         self.viewport().setAcceptDrops(True)
-        self.setDragDropMode(QtGui.QAbstractItemView.InternalMove)
+        self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
 
         if not self._columns:
             return
@@ -39,7 +39,7 @@ class LayerPanel(QtGui.QTreeWidget):
             self.resizeColumnToContents(i)
 
         self.header().resizeSection(0, 30)
-        self.header().setResizeMode(QtGui.QHeaderView.Fixed)
+        self.header().setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
 
     def mousePressEvent(self, event):
         """
@@ -125,7 +125,7 @@ class LayerPanel(QtGui.QTreeWidget):
             event.setDropAction(QtCore.Qt.IgnoreAction)
 
 
-class Layer(QtGui.QTreeWidgetItem):
+class Layer(QtWidgets.QTreeWidgetItem):
     """
     Layer item visible in Layers pannel, stores information about
     individual strokes
@@ -212,7 +212,7 @@ class Layer(QtGui.QTreeWidgetItem):
             self.visible = bool(visible)
 
 
-class Folder(QtGui.QTreeWidgetItem):
+class Folder(QtWidgets.QTreeWidgetItem):
     """
     Folder item visible in Layers pannel, stores information about
     groups of strokes
